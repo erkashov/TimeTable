@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
                     EditText editText = findViewById(R.id.groupNum);
                     GroupNumber = editText.getText().toString();
                     if(GroupNumber.equals("")){
+                        //уведомление
                         Toast toast = Toast.makeText(this, "Введите номер группы", Toast.LENGTH_LONG);
                         toast.show();
                         return;
