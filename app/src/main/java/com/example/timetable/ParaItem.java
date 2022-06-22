@@ -1,18 +1,22 @@
 package com.example.timetable;
 
+import java.util.Date;
+
 public class ParaItem {
     private String nomer;
     private String startTime;
     private String endTime;
     private String naim;
     private String prepod;
+    private Date date;
 
-    public ParaItem (String _nomer, String _start, String _end, String _naim, String _prepod){
+    public ParaItem (String _nomer, String _start, String _end, String _naim, String _prepod, Date _date){
         this.nomer = _nomer;
         this.startTime = _start;
         this.endTime = _end;
         this.naim = _naim;
         this.prepod = _prepod;
+        this.date = _date;
     }
 
     public String getNomer(){ return nomer; }
@@ -28,6 +32,7 @@ public class ParaItem {
     public String getPrepod() {
         return prepod;
     }
+    public Date getDate(){return date;}
 
     public void setNomer(String _ned) {
         this.nomer = _ned;
@@ -44,5 +49,6 @@ public class ParaItem {
     public void setPrepod(String _ned) {
         this.prepod = _ned;
     }
+    public void setDate(Date _date) {this.date = _date;}
 
 }
