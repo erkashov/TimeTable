@@ -1,20 +1,26 @@
 package com.example.timetable;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateItem {
     private int day;
     private String dayNedeli;
-    private Date date;
+    private int month;
+    private int year;
 
-    public DateItem (int _day, String _dayN , Date _date){
+    public DateItem (int _day, String _dayN , int _month, int _year){
         day = _day;
         dayNedeli = _dayN;
-        date = _date;
+        this.month = _month;
+        this.year = _year;
     }
 
     public String getDay(){
         return Integer.toString(day);
+    }
+    public int getDayInt(){
+        return day;
     }
 
     public String getDayNedeli() {
@@ -29,6 +35,9 @@ public class DateItem {
         this.day = _day;
     }
 
-    public void setDate(Date _date) {this.date = _date;}
-    public Date getDate(){return date;}
+    public int getMonth(){return month;}
+    public int getYear(){return year;}
+
+    public void setMonth(int _month){this.month = _month;}
+    public void setYear(int _year){this.year = _year;}
 }
