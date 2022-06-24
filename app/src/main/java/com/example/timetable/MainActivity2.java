@@ -35,6 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
         View.OnClickListener timetableButtonOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (savedInstanceState == null) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container_view, ParyFragment.class, null)

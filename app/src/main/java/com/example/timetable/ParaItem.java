@@ -8,15 +8,19 @@ public class ParaItem {
     private String endTime;
     private String naim;
     private String prepod;
-    private Date date;
+    private String tip_zan;
+    private String audit;
+    private String zdanie;
 
-    public ParaItem (String _nomer, String _start, String _end, String _naim, String _prepod, Date _date){
+    public ParaItem (String _nomer, String _start, String _end, String _naim, String _prepod, String _tip_zan, String _audit, String _zdanie){
         this.nomer = _nomer;
         this.startTime = _start;
         this.endTime = _end;
         this.naim = _naim;
         this.prepod = _prepod;
-        this.date = _date;
+        this.audit = _audit;
+        this.tip_zan = _tip_zan;
+        this.zdanie = _zdanie;
     }
 
     public String getNomer(){ return nomer; }
@@ -32,7 +36,15 @@ public class ParaItem {
     public String getPrepod() {
         return prepod;
     }
-    public Date getDate(){return date;}
+    public String getTip_zan() {
+        return tip_zan;
+    }
+    public String getAudit() {
+        return audit;
+    }
+    public String getZdanie() {
+        return zdanie;
+    }
 
     public void setNomer(String _ned) {
         this.nomer = _ned;
@@ -49,6 +61,13 @@ public class ParaItem {
     public void setPrepod(String _ned) {
         this.prepod = _ned;
     }
-    public void setDate(Date _date) {this.date = _date;}
-
+    public void setTip_zan(String _ned) {
+        this.tip_zan = _ned;
+    }
+    public void setAudit(String _ned) {
+        this.audit = _ned;
+    }
+    public void setZdanie(String _ned) {
+        this.zdanie = _ned;
+    }
 }

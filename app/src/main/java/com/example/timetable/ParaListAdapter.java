@@ -30,10 +30,13 @@ public class ParaListAdapter extends RecyclerView.Adapter<ParaListAdapter.ViewHo
     public void onBindViewHolder(ParaListAdapter.ViewHolder holder, int position) {
         ParaItem state = list.get(position);
         holder.nomerView.setText(state.getNomer());
+
         holder.startView.setText(state.getStartTime());
         holder.endView.setText(state.getEndTime());
         holder.naimView.setText(state.getNaim());
         holder.prepodView.setText(state.getPrepod());
+        holder.tipZanView.setText(state.getTip_zan());
+        holder.auditView.setText(state.getAudit() + " аудитория, " + state.getZdanie() + " здание");
     }
 
     @Override
@@ -42,7 +45,7 @@ public class ParaListAdapter extends RecyclerView.Adapter<ParaListAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView nomerView, startView, endView, naimView, prepodView;
+        final TextView nomerView, startView, endView, naimView, prepodView, tipZanView, auditView;
 
         ViewHolder(View view) {
             super(view);
@@ -51,6 +54,8 @@ public class ParaListAdapter extends RecyclerView.Adapter<ParaListAdapter.ViewHo
             endView = view.findViewById(R.id.EndTime);
             naimView = view.findViewById(R.id.naimPara);
             prepodView = view.findViewById(R.id.prepodPara);
+            tipZanView = view.findViewById(R.id.tipPara);
+            auditView = view.findViewById(R.id.auditPara);
 
         }
     }

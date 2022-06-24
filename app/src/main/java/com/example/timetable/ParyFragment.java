@@ -40,6 +40,7 @@ public class ParyFragment extends Fragment {
     RecyclerView mRecyclerView;
     RecyclerView mRecyclerViewPara;
     SQLiteDatabase db;
+    MyListAdapter adapter;
 
     public ParyFragment() {
         // Required empty public constructor
@@ -85,6 +86,15 @@ public class ParyFragment extends Fragment {
         MyListAdapter.OnStateClickListener stateClickListener = new MyListAdapter.OnStateClickListener() {
             @Override
             public void onStateClick(DateItem date, int position) {
+
+                // Notify adapter
+                mRecyclerView.post(new Runnable() {
+                    @Override public void run()
+                    {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
                 LocalDate dateLocal = LocalDate.of(date.getYear(), date.getMonth(), date.getDayInt());
 
                 int isChet = 0;
@@ -99,15 +109,15 @@ public class ParyFragment extends Fragment {
         //открытие или создание бд
         db = getActivity().getBaseContext().openOrCreateDatabase("app.db", getActivity().MODE_PRIVATE, null);
         //создание таблиц
-        db.execSQL("CREATE TABLE IF NOT EXISTS pary (id INTEGER,   dayOfWeek INTEGER, isChet INTEGER, startTime TEXT, endTime TEXT, naim TEXT,prepod TEXT ,group_num INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS pary (id INTEGER,   dayOfWeek INTEGER, isChet INTEGER, startTime TEXT, endTime TEXT, naim TEXT,prepod TEXT ,group_num INTEGER, tipZan TETX, audit TEXT, zdanie TETX)");
         db.execSQL("delete from pary");
-        StringBuilder queryText = new StringBuilder().append("INSERT INTO pary VALUES(1,  1, 1, '8:00', '9:30', 'РМП', 'Гимадиев', ").append(LoginActivity.GroupNumber ).append(")");
+        StringBuilder queryText = new StringBuilder().append("INSERT INTO pary VALUES(1,  1, 1, '8:00', '9:30', 'РМП', 'Гимадиев', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
         db.execSQL(queryText.toString());
-        queryText = new StringBuilder().append("INSERT INTO pary VALUES(2, 1, 1, '9:40', '11:20', 'РПМ', 'Лоповок', ").append(LoginActivity.GroupNumber ).append(")");
+        queryText = new StringBuilder().append("INSERT INTO pary VALUES(2, 1, 1, '9:40', '11:20', 'РПМ', 'Лоповок', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
         db.execSQL(queryText.toString());
-        queryText = new StringBuilder().append("INSERT INTO pary VALUES(3,  1, 0, '8:00', '9:30', 'ПиТПМ', 'Лоповок', ").append(LoginActivity.GroupNumber ).append(")");
+        queryText = new StringBuilder().append("INSERT INTO pary VALUES(3,  1, 0, '8:00', '9:30', 'ПиТПМ', 'Лоповок', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
         db.execSQL(queryText.toString());
-        queryText = new StringBuilder().append("INSERT INTO pary VALUES(4, 1, 0, '9:40', '11:20', 'Философия', 'Сиразеева', ").append(LoginActivity.GroupNumber ).append(")");
+        queryText = new StringBuilder().append("INSERT INTO pary VALUES(4, 1, 0, '9:40', '11:20', 'Философия', 'Сиразеева', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
         db.execSQL(queryText.toString());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -121,7 +131,7 @@ public class ParyFragment extends Fragment {
         setInitialData();
 
         // создаем адаптер
-        MyListAdapter adapter = new MyListAdapter(getActivity(), list, stateClickListener);
+        adapter = new MyListAdapter(getActivity(), list, stateClickListener);
 
         // устанавливаем для списка адаптер
         mRecyclerView.setAdapter(adapter);
@@ -140,12 +150,15 @@ public class ParyFragment extends Fragment {
 
         while(query.moveToNext()){
             i++;
-            ParaItem para = new ParaItem("", "", "", "", "", new Date());
+            ParaItem para = new ParaItem("", "", "", "", "", "", "", "");
             para.setNomer(Integer.toString(i));
             para.setStartTime(query.getString(3));
             para.setEndTime(query.getString(4));
             para.setNaim(query.getString(5));
             para.setPrepod(query.getString(6));
+            para.setTip_zan(query.getString(8));
+            para.setAudit(query.getString(9));
+            para.setZdanie(query.getString(10));
             listPara.add(para);
         }
 
@@ -159,7 +172,7 @@ public class ParyFragment extends Fragment {
         LocalDate date = LocalDate.now();
 
         for(int i=0; i<14;i++){
-            list.add(new DateItem(date.getDayOfMonth(), date.getDayOfWeek().getDisplayName(TextStyle.SHORT, new Locale("ru", "RU")), date.getMonthValue(), date.getYear()));
+            list.add(new DateItem(date.getDayOfMonth(), date.getDayOfMonth() + "\n" + date.getDayOfWeek().getDisplayName(TextStyle.SHORT, new Locale("ru", "RU")), date.getMonthValue(), date.getYear()));
 
             if (date.getDayOfWeek().name() == "SATURDAY"){
                 date = date.plusDays(2);

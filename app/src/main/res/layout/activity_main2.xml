@@ -17,7 +17,10 @@
             android:id="@+id/logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/logo" />
 
         <TextView
@@ -39,7 +42,10 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/calendar" />
     </RelativeLayout>
 
@@ -58,27 +64,50 @@
             android:layout_margin="10dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#AABAF4"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:background="#AABAF4"
+        android:orientation="horizontal"
+         >
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
             android:id="@+id/timetableButton"
-            android:background="@drawable/timetable" />
-
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:id="@+id/newButton"
-            android:background="@drawable/news" />
+            android:background="@drawable/timetable"
+            app:layout_constraintEnd_toStartOf="@+id/newButton"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/newButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/news"
+            app:layout_constraintEnd_toStartOf="@+id/groupButton"
+            app:layout_constraintStart_toEndOf="@+id/timetableButton" />
+
+        <ImageView
+            android:id="@+id/groupButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/group"
+            app:layout_constraintEnd_toStartOf="@+id/mapButton"
+            app:layout_constraintStart_toEndOf="@+id/newButton" />
+
+        <ImageView
+            android:id="@+id/mapButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/map"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/groupButton"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </RelativeLayout>

@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RadioButton android:id="@+id/dateV"
+    android:gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_edittext_date"
-    android:orientation="vertical"
+    android:background="@drawable/radio_flat_selector"
+    android:button="@android:color/transparent"
+    android:text="11\nпн"
+    android:textSize="25dp"
+    android:textColor="@color/radio_flat_text_selector"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="5dp"
-    android:layout_margin="5dp">
-
-    <TextView
-        android:id="@+id/dayV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:text="11"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/dayNedeliV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:text="ПН"
-        android:singleLine="false"
-        android:layout_gravity="center"
-        />
-
-</LinearLayout>
+    android:layout_margin="5dp"/>

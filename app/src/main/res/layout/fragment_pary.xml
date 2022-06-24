@@ -24,8 +24,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listViews"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+           tools:listitem="@layout/date_item" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listPara"
             android:layout_width="match_parent"
