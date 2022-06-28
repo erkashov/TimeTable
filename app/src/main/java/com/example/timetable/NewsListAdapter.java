@@ -14,10 +14,12 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
 
     private final LayoutInflater LInflater;
     private final List<News> list;
+    private final NewsListAdapter.OnNewsClickListener onClickListener;
 
-    NewsListAdapter(Context context, List<News> data) {
+    NewsListAdapter(Context context, List<News> data, OnNewsClickListener listen) {
         list = data;
         LInflater = LayoutInflater.from(context);
+        this.onClickListener = listen;
     }
 
     @Override
@@ -31,6 +33,14 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
         News news = list.get(position);
         holder.descrView.setText(news.getDescription());
         holder.titleView.setText(news.getTitle());
+        holder.titleView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                // вызываем метод слушателя, передавая ему данные
+                onClickListener.onNewsClick(news, position);
+            }
+        });
     }
 
     @Override
@@ -47,5 +57,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
             descrView = view.findViewById(R.id.decription);
 
         }
+    }
+
+    interface OnNewsClickListener{
+        void onNewsClick(News newsItem, int position);
     }
 }

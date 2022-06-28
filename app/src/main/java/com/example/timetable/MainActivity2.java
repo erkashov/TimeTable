@@ -32,6 +32,10 @@ public class MainActivity2 extends AppCompatActivity {
         TextView groupNum = (TextView)findViewById(R.id.groupText);
         groupNum.setText(LoginActivity.GroupNumber);
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container_view, ParyFragment.class, null)
+                .commit();
+
         View.OnClickListener timetableButtonOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,11 +59,25 @@ public class MainActivity2 extends AppCompatActivity {
             }
         };
 
+        View.OnClickListener mapButtonOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (savedInstanceState == null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container_view, MapFragment.class, null)
+                            .commit();
+                }
+            }
+        };
+
         ImageView timetableBtn = (ImageView) findViewById(R.id.timetableButton);
         timetableBtn.setOnClickListener(timetableButtonOnClickListener);
 
         ImageView newsBtn = findViewById(R.id.newButton);
         newsBtn.setOnClickListener(newsButtonOnClickListener);
+
+        ImageView mapButton = findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(mapButtonOnClickListener);
 
     }
 

@@ -108,17 +108,7 @@ public class ParyFragment extends Fragment {
 
         //открытие или создание бд
         db = getActivity().getBaseContext().openOrCreateDatabase("app.db", getActivity().MODE_PRIVATE, null);
-        //создание таблиц
-        db.execSQL("CREATE TABLE IF NOT EXISTS pary (id INTEGER,   dayOfWeek INTEGER, isChet INTEGER, startTime TEXT, endTime TEXT, naim TEXT,prepod TEXT ,group_num INTEGER, tipZan TETX, audit TEXT, zdanie TETX)");
-        db.execSQL("delete from pary");
-        StringBuilder queryText = new StringBuilder().append("INSERT INTO pary VALUES(1,  1, 1, '8:00', '9:30', 'РМП', 'Гимадиев', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
-        db.execSQL(queryText.toString());
-        queryText = new StringBuilder().append("INSERT INTO pary VALUES(2, 1, 1, '9:40', '11:20', 'РПМ', 'Лоповок', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
-        db.execSQL(queryText.toString());
-        queryText = new StringBuilder().append("INSERT INTO pary VALUES(3,  1, 0, '8:00', '9:30', 'ПиТПМ', 'Лоповок', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
-        db.execSQL(queryText.toString());
-        queryText = new StringBuilder().append("INSERT INTO pary VALUES(4, 1, 0, '9:40', '11:20', 'Философия', 'Сиразеева', ").append(LoginActivity.GroupNumber ).append(",'лабораторная работа', '204', '7')");
-        db.execSQL(queryText.toString());
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView = view.findViewById(R.id.listViews);
@@ -141,7 +131,7 @@ public class ParyFragment extends Fragment {
         listPara.clear();
 
         String queryText = new StringBuilder().append("SELECT * FROM pary Where dayOfWeek ").append(" = ").append(day_of_week)
-                .append(" and isChet").append(" = ").append(is_chet).toString();
+                .append(" and isChet").append(" = ").append(is_chet).append(" and group_num = ").append(String.valueOf(LoginActivity.GroupNumber)).toString();
 
         //берем значения
         Cursor query = db.rawQuery(queryText, null);
